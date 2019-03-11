@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"os"
+	"testing"
+)
 
 func TestNewDeck(t *testing.T) {
 
@@ -25,4 +28,21 @@ func TestNewDeck(t *testing.T) {
 	if finalCard != expectedFinalCard {
 		t.Errorf("Expected final card to be %v, but received %v", expectedFinalCard, finalCard)
 	}
+}
+
+func TestSaveAndRestore(t *testing.T) {
+
+	filename := "_testdeck"
+
+	os.Remove(filename)
+
+	d := newDeck()
+	d.saveToFile(filename)
+
+	d = loadFromFile(filename)
+	if len(d) != 12 {
+		t.Errorf("failed to restore saved deck from local file %v!", filename)
+	}
+
+	os.Remove(filename)
 }
