@@ -40,7 +40,8 @@ func main() {
 	p3.firstName = "Sarah"
 	p3.lastName = "Jones"
 
-	p3.updateName("Betty") // won't work
+	ptrP3 := &p3
+	ptrP3.updateName("Betty")
 	p3.print()
 }
 
@@ -48,7 +49,6 @@ func (p person) print() {
 	fmt.Printf("%+v", p) // prints field names and values
 }
 
-// the below won't work without pointers!
-func (p person) updateName(newFirstName string) {
-	p.firstName = newFirstName
+func (p *person) updateName(newFirstName string) {
+	(*p).firstName = newFirstName
 }
