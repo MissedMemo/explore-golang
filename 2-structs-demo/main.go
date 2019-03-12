@@ -40,8 +40,7 @@ func main() {
 	p3.firstName = "Sarah"
 	p3.lastName = "Jones"
 
-	ptrP3 := &p3
-	ptrP3.updateName("Betty")
+	p3.updateName("Betty")
 	p3.print()
 }
 
