@@ -10,7 +10,7 @@ type contactInfo struct {
 type person struct {
 	firstName string
 	lastName  string
-	contact   contactInfo
+	contactInfo
 }
 
 func main() {
@@ -28,7 +28,7 @@ func main() {
 	p2 := person{
 		firstName: "Tom",
 		lastName:  "Jones",
-		contact: contactInfo{
+		contactInfo: contactInfo{
 			email:   "tom@yahoo.com",
 			zipCode: 12345,
 		},
@@ -39,6 +39,16 @@ func main() {
 	var p3 person
 	p3.firstName = "Sarah"
 	p3.lastName = "Jones"
-	fmt.Println("p3", p3)
-	fmt.Printf("%+v", p3) // prints field names and values
+
+	p3.updateName("Betty") // won't work
+	p3.print()
+}
+
+func (p person) print() {
+	fmt.Printf("%+v", p) // prints field names and values
+}
+
+// the below won't work without pointers!
+func (p person) updateName(newFirstName string) {
+	p.firstName = newFirstName
 }
