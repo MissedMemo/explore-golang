@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+type colorMap map[string]string
+
 func main() {
 
 	colors1 := map[string]string{
@@ -23,4 +25,24 @@ func main() {
 
 	delete(colors3, "gray2")
 	fmt.Println(colors3)
+
+	colorsX := colorMap{
+		"pink":   "#ff007f",
+		"purple": "#663399",
+	}
+
+	printMap(colorsX)
+	colorsX.print()
+}
+
+func printMap(m map[string]string) {
+	for color, hex := range m {
+		fmt.Println("hex value for", color, "is", hex)
+	}
+}
+
+func (m colorMap) print() {
+	for color, hex := range m {
+		fmt.Println("colorMap hue for", hex, "is", color)
+	}
 }
